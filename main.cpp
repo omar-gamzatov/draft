@@ -1,130 +1,56 @@
 #include <iostream>
-#include <vector>
-#include <map>
-#include <set>
-#include <string>
-#include <limits>
+#include <chrono>
 
-using namespace std;
-
-int timeToInt(string time) {
-    int h(stoi(string(time.begin(), time.begin() + 2)));
-    int m(stoi(string(time.begin() + 3, time.end())));
-    return h * 60 + m;
+bool turn_week(long long int& k, long long int& m, long long int& r, uint64_t& d_cnt, uint32_t& d) {
+    for (int i = 0; i <= 7; i++) {
+        if (d < 6) m += k;
+        r++;
+        m -= r;
+        if (m < 0) {
+            std::cout << d_cnt << "\n";
+            return false;
+        }
+        d_cnt++;
+        d++;
+        if (d > 7) d = 1;
+    }
+    return true;
 }
 
-string timeToString(int time) {
-    int h = time / 60;
-    int min = time - h * 60;
-    string hours = (h < 10) ? ("0" + to_string(h) + ":") : to_string(h) + ":";
-    string mins = (min < 10) ? ("0" + to_string(min)) : to_string(min);
-    return (hours + mins);
-}
+int main() {
+    uint32_t d;
+    long long int k, m;
+    std::cin >> k >> m >> d;
+    long long int readed = 0;
+    uint64_t d_cnt = 0;
+    auto start = std::chrono::steady_clock::now();
+    while(true) {
 
 
-struct date {
-    int time;
-    int duration;
-    int mems_cnt;
-    vector<string> mems;
-};
-
-class member
-{
-public:
-    multimap<int, date> dates;
-
-    member(int day, int time, int duration, vector<string> names) {
-        date d;
-        d.time = time;
-        d.duration = duration;
-        d.mems_cnt = names.size();
-        d.mems = names;
-        dates.emplace(day, d);
-    }
-
-    void addDate(int day, int time, int duration, vector<string> names) {
-        date d;
-        d.time = time;
-        d.duration = duration;
-        d.mems_cnt = names.size();
-        d.mems = names;
-        dates.emplace(day, d);
-    }
-
-    bool isDateAvaliable(int day, int time) {
-        for (auto& it : this->dates) {
-            if (it.first == day && (time >= it.second.time && time <= it.second.time + it.second.duration))
-                return false;
-        }
-        return true;
-    }
-
-    void tryAppoint
-
-    void printDates(int day) {
-        for (auto& date : dates) {
-            if (date.first == day) {
-                cout << timeToString(date.second.time) << " " <<
-                        date.second.duration << " ";
-                for (string& s : date.second.mems) {
-                    cout << s << " ";
+        if (m + 5 * k < readed * 7 + 28) {
+            for (int i = 0; i <= 7; i++) {
+                if (d < 6) m += k;
+                readed++;
+                m -= readed;
+                if (m < 0) {
+                    std::cout << "day: " << d_cnt << "\n";
+                    auto end = std::chrono::steady_clock::now();
+                    auto diff = end - start;
+                    std::cout << std::chrono::duration <double, std::milli> (diff).count() << " ms" << std::endl;
+                    return 0;
                 }
-            }
-            cout << endl;
-        }
-    }
-};
-
-
-int main(void) {
-    int n;
-    string req, name;
-    map<string, member> members;
-    cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> req;
-        if (req == "APPOINT") {
-            int day, dur, count;
-            string time;
-            vector<string> FAIL;
-            vector<string> names;
-            bool flag = true;
-            cin >> day >> time >> dur >> count;
-            for (int j = 0; j < count; j++) {
-                cin >> name;
-                names.push_back(name);
-            }
-            for (int j = 0; j < count; j++) {
-                if (members.find(names[j]) == members.end()) {
-                    members.emplace(names[j], member(day, timeToInt(time), dur, names));
-                }
-                else if (members.find(names[j]) != members.end() && members.at(names[j]).isDateAvaliable(day, timeToInt(time))) {
-                    members.at(names[j]).addDate(day, timeToInt(time), dur, names);
-                }
-                else if (members.find(names[j]) != members.end() && !members.at(names[j]).isDateAvaliable(day, timeToInt(time))) {
-                    flag = false;
-                    FAIL.push_back(names[j]);
-                }
-            }
-            if (flag) {
-                cout << "OK" << endl;
-                continue;
-            }
-            else {
-                cout << "FAIL" << endl;
-                for (string& it : FAIL) cout << it << " ";
-                cout << endl;
+                d_cnt++;
+                d++;
+                if (d > 7) d = 1;
             }
         }
-        else if (req == "PRINT") {
-            int day;
-            string name;
-            cin >> day >> name;
-            members.at(name).printDates(day);
-            continue;
-         }
+        else {
+//            std::cout << "week: " << d_cnt/7 << std::endl;
+            m += (5 * k) - (readed * 7 + 28);
+            std::cout << "day:" << d_cnt << " m:" << m << std::endl;
+            d_cnt += 7;
+            readed += 7;
+        }
     }
-
     return 0;
 }
