@@ -1,5 +1,0 @@
-﻿  main.cpp
-main.obj : error LNK2019: ссылка на неразрешенный внешний символ glewInit в функции main.
-main.obj : error LNK2001: неразрешенный внешний символ glewExperimental.
-E:\VSrepos\libs\glew-2.1.0\lib\Release\Win32\glew32s.lib : warning LNK4272: тип компьютера библиотеки "x86" конфликтует с типом целевого компьютера "x64"
-E:\VSrepos\щпд\x64\Debug\ogl.exe : fatal error LNK1120: неразрешенных внешних элементов: 2
