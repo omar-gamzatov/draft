@@ -32,4 +32,3 @@ public:
 	~ImgToASCII();
 	void parse_jpg();
 };
-
