@@ -42,7 +42,7 @@ void ImgToASCII::parse_comment()
 	unsigned char size[2]{ 0, 0 };
 
 	img >> size[0] >> size[1];
-	std::cout << std::endl << "Коммментарий (размер " << ((size[0] << 4) + size[1]) - 2 << " бт): " << std::endl;
+	std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ " << ((size[0] << 4) + size[1]) - 2 << " пїЅпїЅ): " << std::endl;
 
 	for (unsigned int i = 0; i < ((size[0] << 4) + size[1]) - 2; ++i)
 	{
@@ -60,9 +60,9 @@ void ImgToASCII::parse_kvant_table()
 	img >> byte;
 	std::pair<unsigned char, unsigned char> id = split_byte(byte);
 	if (id.first)
-		std::cout << std::endl << "Таблица квантования (2 байта), ID: " << std::hex << (unsigned int)id.second << std::endl;
+		std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (2 пїЅпїЅпїЅпїЅпїЅ), ID: " << std::hex << (unsigned int)id.second << std::endl;
 	else
-		std::cout << std::endl << "Таблица квантования (1 байт), ID: " << std::hex << (unsigned int)id.second << std::endl;
+		std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (1 пїЅпїЅпїЅпїЅ), ID: " << std::hex << (unsigned int)id.second << std::endl;
 
 	for (unsigned int i = 0; i < ((size[0] << 4) + size[1]) - 3; ++i)
 	{
@@ -80,27 +80,27 @@ void ImgToASCII::parse_baseline_DCT()
 	img >> size[0] >> size[1];
 	std::cout << std::endl << "Baseline DCT: " << std::endl;
 	img >> byte;
-	std::cout << "Разрядность каналов: " << (unsigned int)byte << std::endl;
+	std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << (unsigned int)byte << std::endl;
 
 	unsigned int width, height;
 	img >> reso[0] >> reso[1];
 	height = join_bytes(reso[0], reso[1]);
 	img >> reso[0] >> reso[1];
 	width = join_bytes(reso[0], reso[1]);
-	std::cout << "Разрешение изображения: " << std::dec << width << "x" << height << std::endl;
+	std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << std::dec << width << "x" << height << std::endl;
 
 	img >> byte;
-	std::cout << "Количество каналов: " << (unsigned int)byte << std::endl;
+	std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << (unsigned int)byte << std::endl;
 	for (unsigned int i = 0; i < 3; ++i)
 	{
 		img >> byte;
 		std::cout << "ID: " << std::hex << (unsigned int)byte << " | ";
 		img >> byte;
 		std::pair<unsigned char, unsigned char> thinning = split_byte(byte);
-		std::cout << "Горизонтальное прореживание: " << std::hex << (unsigned int)thinning.first  << " | ";
-		std::cout << "Вертикальное   прореживание: " << std::hex << (unsigned int)thinning.second << " | ";
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << std::hex << (unsigned int)thinning.first  << " | ";
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << std::hex << (unsigned int)thinning.second << " | ";
 		img >> byte;
-		std::cout << "ID таблицы квантования: " << std::hex << (unsigned int)byte << " | ";
+		std::cout << "ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << std::hex << (unsigned int)byte << " | ";
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
@@ -115,18 +115,18 @@ void ImgToASCII::parse_haffman_table()
 	std::pair<unsigned char, unsigned char> id = split_byte(byte);
 
 	if (id.first)
-		std::cout << std::endl << "Таблица Хаффмана (AC коэф.), ID: " << std::hex << (unsigned int)id.second << std::endl;
+		std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (AC пїЅпїЅпїЅпїЅ.), ID: " << std::hex << (unsigned int)id.second << std::endl;
 	else
-		std::cout << std::endl << "Таблица Хаффмана (DC коэф.), ID: " << std::hex << (unsigned int)id.second << std::endl;
+		std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (DC пїЅпїЅпїЅпїЅ.), ID: " << std::hex << (unsigned int)id.second << std::endl;
 
-	std::cout << "Длины кодов: ";
+	std::cout << "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: ";
 	for (unsigned int i = 1; i <= 16 ; ++i)
 	{
 		img >> byte;
 		length += (unsigned int)byte;
 		std::cout << std::hex << (unsigned int)byte << " ";
 	}
-	std::cout << std::endl << "Коды: ";
+	std::cout << std::endl << "пїЅпїЅпїЅпїЅ: ";
 	for (unsigned int i = 0; i < length; ++i)
 	{
 		img >> byte;
@@ -142,17 +142,17 @@ void ImgToASCII::parse_start_of_scan()
 
 	std::cout << std::endl << "Start of Scan:" << std::endl;
 	img >> size[0] >> size[1];
-	std::cout << "Размер SOS: " << std::dec << join_bytes(size[0], size[1]) << std::endl;
+	std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅ SOS: " << std::dec << join_bytes(size[0], size[1]) << std::endl;
 
 	img >> chanel_cnt;
 	for (unsigned int i = 0; i < chanel_cnt; ++i)
 	{
 		img >> byte;
-		std::cout << "Идентификатор канала: " << std::hex << (unsigned int)byte << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " << std::hex << (unsigned int)byte << std::endl;
 		img >> byte;
 		std::pair<unsigned char, unsigned char> id = split_byte(byte);
-		std::cout << "Идентификатор таблицы Хаффмана для DC коэффициентов: " << (unsigned int)id.first  << std::endl;
-		std::cout << "Идентификатор таблицы Хаффмана для AC коэффициентов: " << (unsigned int)id.second << std::endl << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ DC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << (unsigned int)id.first  << std::endl;
+		std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ AC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << (unsigned int)id.second << std::endl << std::endl;
 	}
 	img >> byte;
 	std::cout << "Start of spectral or predictor selection: " << std::hex << (unsigned int)byte << std::endl;
@@ -180,7 +180,7 @@ void ImgToASCII::parse_jpg()
 			switch (byte)
 			{
 			case 0xD8:
-				std::cout << "Начало" << std::endl;
+				std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅ" << std::endl;
 				break;
 			case 0xFE:
 				parse_comment();
@@ -200,11 +200,11 @@ void ImgToASCII::parse_jpg()
 
 			case 0xDA:
 				parse_start_of_scan();
-				std::cout << std::endl << "Закодированные данные: " << std::endl;
+				std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: " << std::endl;
 				break;
 
 			case 0xD9 :
-				std::cout << std::endl << "Конец" << std::endl;
+				std::cout << std::endl << "пїЅпїЅпїЅпїЅпїЅ" << std::endl;
 				break;
 
 			default:
@@ -214,5 +214,3 @@ void ImgToASCII::parse_jpg()
 		}
 	}
 }
-//101011101110011101100001111100100
-
