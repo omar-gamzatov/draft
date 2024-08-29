@@ -202,7 +202,7 @@ void ImgToASCII::parse_jpg()
 				parse_start_of_scan();
 				std::cout << std::endl << "Закодированные данные: " << std::endl;
 				break;
-
+//123
 			case 0xD9 :
 				std::cout << std::endl << "Конец" << std::endl;
 				break;
